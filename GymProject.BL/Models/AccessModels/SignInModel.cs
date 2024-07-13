@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable disable
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +21,7 @@ namespace GymProject.BL.Models.AccessModels
         public string Password { get; set; }
 
         [Required]
-        [Compare(nameof(Password))]
+        [Compare(nameof(Password), ErrorMessage = "The password and confirmation password do not match")]
         public string PasswordConfirmed { get; set; }
     }
 }
