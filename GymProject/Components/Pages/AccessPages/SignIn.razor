@@ -1,45 +1,66 @@
 ﻿@page "/signIn"
+@using GymProject.Components.FormComponents
+@rendermode InteractiveServer
 <h3>SignIn</h3>
 
 <RadzenTemplateForm TItem="SignInModel" Data="@SignInModel" Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
     <DataAnnotationsValidator />
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-4">
-            <div>
-                <label>
-                    E-mail *
-                </label>
-            </div>
-             <RadzenTextBox @bind-Value=@SignInModel.Email Name="Email" />
-            <RadzenDataAnnotationValidator Component="Email" Style="position: absolute" />
+            <InputForm ComponentName="Email" Label="E-mail *"/>
+        </div>
+@* 
+        <div class="col-4">
+            <InputForm ComponentName="Password" Label="Password *">
+                <RadzenPassword @bind-Value=@SignInModel.Password Name="Password" />
+            </InputForm>
         </div>
 
         <div class="col-4">
-            <div>
-                <label>
-                    Password *
-                </label>
-            </div>
-            <RadzenPassword @bind-Value=@SignInModel.Password  Name="Password"/>
-            <RadzenDataAnnotationValidator Component="Password" Style="position: absolute" />
-
+            <InputForm ComponentName="Password" Label="Confirm Password *">
+                <RadzenPassword @bind-Value=@SignInModel.PasswordConfirmed Name="PasswordConfirmed" />
+            </InputForm>
+         </div> *@
+    </div>
+@*     <div class="row mb-3">
+        <div class="col-4">
+            <InputForm ComponentName="FirstName" Label="First Name *">
+                <RadzenTextBox @bind-Value=@SignInModel.FirstName Name="FirstName" />
+            </InputForm>
         </div>
 
         <div class="col-4">
-            <div>
-                <label>
-                    Confirm Password *
-                </label>
-            </div>
-            <RadzenPassword @bind-Value=@SignInModel.PasswordConfirmed Name="PasswordConfirmed" />
-            <RadzenDataAnnotationValidator Component="PasswordConfirmed" Style="position: absolute" />
+            <InputForm ComponentName="LastName" Label="Last Name *">
+                <RadzenTextBox @bind-Value=@SignInModel.LastName Name="LastName" />
+            </InputForm>
+        </div>
 
+        <div class="col-4">
+            <InputForm ComponentName="Birth" Label="Birth *">
+                <RadzenDatePicker @bind-Value=@SignInModel.Birth Name="Birth" />
+            </InputForm>
         </div>
     </div>
 
-    <RadzenButton ButtonType="ButtonType.Submit" Text="Hi"></RadzenButton>
+    <div class="row mb-3">
+        <div class="col-4">
+            <InputForm ComponentName="Weight" Label="Weight *">
+                <RadzenNumeric Placeholder="0.0" Step="0.5" @bind-Value=@SignInModel.Weight Name="Weight" />
+            </InputForm>
+        </div>
+
+        <div class="col-4">
+            <InputForm ComponentName="Height" Label="Height *">
+                <RadzenNumeric Placeholder="0.0" Step="0.5" @bind-Value=@SignInModel.Height Name="Height" />
+            </InputForm>
+        </div>
+
+    </div> *@
+    <RadzenButton ButtonType="ButtonType.Submit" Text="sign In"/>
 
 </RadzenTemplateForm>
+
+
 @code {
 
     private SignInModel SignInModel { get; set; }

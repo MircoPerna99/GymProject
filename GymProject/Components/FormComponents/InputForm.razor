@@ -1,0 +1,23 @@
+﻿
+<div>
+    <div>
+        <label>
+            @Label
+        </label>
+    </div>
+    <RadzenTextBox @bind-Value=@SignInModel.Email Name="Email" />
+
+    <div>
+        <RadzenDataAnnotationValidator Component=@ComponentName />
+    </div>
+</div>
+@code {
+    [Parameter]
+    public string Label { get; set; } = "Label Dafault";
+
+    [Parameter]
+
+
+    [Parameter]
+    public string ComponentName { get; set; }
+}
