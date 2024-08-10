@@ -1,83 +1,102 @@
 ﻿@page "/signIn"
-@using GymProject.Components.FormComponents
 @rendermode InteractiveServer
+@using GymProject.Components.FormComponents
+
 <h3>SignIn</h3>
 
-<RadzenTemplateForm TItem="SignInModel" Data="@SignInModel" Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
-    <DataAnnotationsValidator />
-    <div class="row mb-3">
-        <div class="col-4">
-            <InputForm ComponentName="Email" Label="E-mail *"/>
-        </div>
-@* 
-        <div class="col-4">
-            <InputForm ComponentName="Password" Label="Password *">
-                <RadzenPassword @bind-Value=@SignInModel.Password Name="Password" />
-            </InputForm>
-        </div>
+<RadzenTemplateForm TItem="SignInModel" Data="@_signInModel" Submit=@OnSubmit InvalidSubmit=@OnInvalidSubmit>
 
-        <div class="col-4">
-            <InputForm ComponentName="Password" Label="Confirm Password *">
-                <RadzenPassword @bind-Value=@SignInModel.PasswordConfirmed Name="PasswordConfirmed" />
-            </InputForm>
-         </div> *@
-    </div>
-@*     <div class="row mb-3">
-        <div class="col-4">
-            <InputForm ComponentName="FirstName" Label="First Name *">
-                <RadzenTextBox @bind-Value=@SignInModel.FirstName Name="FirstName" />
-            </InputForm>
-        </div>
-
-        <div class="col-4">
-            <InputForm ComponentName="LastName" Label="Last Name *">
-                <RadzenTextBox @bind-Value=@SignInModel.LastName Name="LastName" />
-            </InputForm>
-        </div>
-
-        <div class="col-4">
-            <InputForm ComponentName="Birth" Label="Birth *">
-                <RadzenDatePicker @bind-Value=@SignInModel.Birth Name="Birth" />
-            </InputForm>
-        </div>
-    </div>
 
     <div class="row mb-3">
         <div class="col-4">
-            <InputForm ComponentName="Weight" Label="Weight *">
-                <RadzenNumeric Placeholder="0.0" Step="0.5" @bind-Value=@SignInModel.Weight Name="Weight" />
+            <InputForm Label="Email *" ComponentName="Email">
+                <RadzenTextBox Name="Email" @bind-Value=@_signInModel.Email />
             </InputForm>
         </div>
 
         <div class="col-4">
-            <InputForm ComponentName="Height" Label="Height *">
-                <RadzenNumeric Placeholder="0.0" Step="0.5" @bind-Value=@SignInModel.Height Name="Height" />
+            <InputForm Label="Password *" ComponentName="Password">
+                <RadzenTextBox Name="Password" @bind-Value=@_signInModel.Password />
             </InputForm>
         </div>
 
-    </div> *@
+        <div class="col-4">
+            <InputForm Label="Password Confirmed *" ComponentName="PasswordConfirmed">
+                <RadzenTextBox Name="PasswordConfirmed" @bind-Value=@_signInModel.PasswordConfirmed />
+            </InputForm>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-4">
+            <InputForm Label="First Name * " ComponentName="FirstName">
+                <RadzenTextBox Name="FirstName" @bind-Value=@_signInModel.FirstName />
+            </InputForm>
+        </div>
+
+        <div class="col-4">
+            <InputForm Label="Last Name *" ComponentName="LastName">
+                <RadzenTextBox Name="LastName" @bind-Value=@_signInModel.LastName />
+            </InputForm>
+        </div>
+
+        <div class="col-4">
+            <InputForm Label="Birth *" DataAnnatationEnabled="false">
+                <RadzenDatePicker @bind-Value=@_signInModel.Birth Name="Birth" DateFormat="dd/MM/yyyy" />
+                <div>
+                    <RadzenRequiredValidator Component="Birth" Text="The Birth field is required" />
+                </div>
+            </InputForm>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-4">
+            <InputForm ComponentName="Weight" Label="Weight *" DataAnnatationEnabled="false">
+                    <RadzenNumeric Placeholder="0.0" Step="0.5" @bind-Value=@_signInModel.Weight Name="Weight" />
+                <div>
+                    <RadzenRequiredValidator Component="Weight" Text="The Weight field is required" />
+                </div>
+            </InputForm>
+        </div>
+
+        <div class="col-4">
+            <InputForm ComponentName="Height" Label="Height *" DataAnnatationEnabled="false">
+                <RadzenNumeric Placeholder="0.0" Step="0.5" @bind-Value=@_signInModel.Height Name="Height"  />
+                <div>
+                    <RadzenRequiredValidator Component="Height" Text="The Height field is required" />
+                </div>
+            </InputForm>
+        </div>
+
+    </div>
     <RadzenButton ButtonType="ButtonType.Submit" Text="sign In"/>
 
 </RadzenTemplateForm>
 
 
 @code {
+    private SignInModel _signInModel;
 
-    private SignInModel SignInModel { get; set; }
-
-    protected override void OnInitialized()
+    protected override Task OnInitializedAsync()
     {
-        SignInModel = new SignInModel();
+        if (_signInModel == null)
+        {
+            _signInModel = new SignInModel();
+        }
+        return base.OnInitializedAsync();
     }
-
 
     void OnSubmit(SignInModel model)
     {
+        var x = _signInModel;
+        var Y = 2;
         //console.Log($"Submit: {JsonSerializer.Serialize(model, new JsonSerializerOptions() { WriteIndented = true })}");
     }
 
     void OnInvalidSubmit(FormInvalidSubmitEventArgs args)
     {
+        var x = _signInModel;
+        var Y = 2;
         //console.Log($"InvalidSubmit: {JsonSerializer.Serialize(args, new JsonSerializerOptions() { WriteIndented = true })}");
     }
 

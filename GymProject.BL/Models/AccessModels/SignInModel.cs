@@ -31,18 +31,13 @@ namespace GymProject.BL.Models.AccessModels
         public string LastName { get; set; }
 
         [Required]
-        public DateTime? Birth { get; set; }
+        public DateTime Birth { get; set; }
 
         [Required]
         public double Height { get; set; }
 
         [Required]
         public double Weight { get; set; }
-
-        public SignInModel() 
-        { 
-            Birth = DateTime.Now;
-        }
 
     }
 }

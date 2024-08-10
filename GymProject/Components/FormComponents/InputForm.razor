@@ -5,19 +5,26 @@
             @Label
         </label>
     </div>
-    <RadzenTextBox @bind-Value=@SignInModel.Email Name="Email" />
+    @ChildContent
 
-    <div>
-        <RadzenDataAnnotationValidator Component=@ComponentName />
+    @if (DataAnnatationEnabled)
+    {
+        <div>
+            <RadzenDataAnnotationValidator Component=@ComponentName />
     </div>
+    }
 </div>
 @code {
     [Parameter]
     public string Label { get; set; } = "Label Dafault";
 
     [Parameter]
-
+    public string ComponentName { get; set; }
 
     [Parameter]
-    public string ComponentName { get; set; }
+    public bool DataAnnatationEnabled { get; set; } = true;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
 }
