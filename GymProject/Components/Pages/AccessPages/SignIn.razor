@@ -1,6 +1,8 @@
 ﻿@page "/signIn"
 @rendermode InteractiveServer
+@using GymProject.BL.Services.AccessServices
 @using GymProject.Components.FormComponents
+@inject AccessService _accessService
 
 <h3>SignIn</h3>
 
@@ -88,7 +90,7 @@
 
     void OnSubmit(SignInModel model)
     {
-        var x = _signInModel;
+        var x = _accessService.Prova();
         var Y = 2;
         //console.Log($"Submit: {JsonSerializer.Serialize(model, new JsonSerializerOptions() { WriteIndented = true })}");
     }
