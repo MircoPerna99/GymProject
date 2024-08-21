@@ -88,9 +88,9 @@
         return base.OnInitializedAsync();
     }
 
-    void OnSubmit(SignInModel model)
+    async void OnSubmit(SignInModel model)
     {
-        var x = _accessService.Prova();
+        var x = await _accessService.AddUser(model);
         var Y = 2;
         //console.Log($"Submit: {JsonSerializer.Serialize(model, new JsonSerializerOptions() { WriteIndented = true })}");
     }

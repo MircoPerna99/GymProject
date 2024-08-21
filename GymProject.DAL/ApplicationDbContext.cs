@@ -22,6 +22,8 @@ namespace GymProject.DAL
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(builder);
         }
+        public DbSet<UserDetails> UserDetails => Set<UserDetails>();
+
         public DbSet<DataProtectionKey> DataProtectionKeys => Set<DataProtectionKey>();
     }
 }

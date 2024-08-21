@@ -1,6 +1,7 @@
 using GymProject.BL.Services.AccessServices;
 using GymProject.Components;
 using GymProject.DAL;
+using GymProject.DAL.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options=>
 
 builder.Services.AddDbContextFactory<ApplicationDbContext>(options => options.UseMySql(mysqlServerVersion), ServiceLifetime.Scoped);
 builder.Services.AddScoped<AccessService>();
+builder.Services.AddScoped<UserService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

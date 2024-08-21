@@ -1,4 +1,6 @@
-﻿using GymProject.DAL;
+﻿using GymProject.BL.Models;
+using GymProject.DAL;
+using GymProject.DAL.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -13,11 +15,21 @@ namespace GymProject.BL.Services.AccessServices
     {
         private readonly IConfiguration _configuration;
         private readonly IDbContextFactory<ApplicationDbContext> _dbContextFactory;
+        private UserService _userService;
 
-        public AccessService(IConfiguration configuration, IDbContextFactory<ApplicationDbContext> dbContextFactory)
+        public AccessService(IConfiguration configuration,
+                            IDbContextFactory<ApplicationDbContext> dbContextFactory, 
+                            UserService userService)
         {
             _configuration = configuration;
             _dbContextFactory = dbContextFactory;
+            _userService = userService;
+        }
+
+        public async Task<bool> SignIn(Sign user)
+        {
+            var userEntity = user.ToEntity();
+            return await _userService.SaveUser(userEntity);
         }
 
         public int Prova()
