@@ -11,6 +11,8 @@ namespace GymProject.BL.Models
     public class UserModel : IBaseEntityModel<User>
     {
         public bool IsActived { get; set; }
+        public string Email { get; set; }
+        public string UserName { get; set; }
         public UserDetailsModel Details { get; set; }
 
         public User ToEntity()

@@ -1,9 +1,11 @@
 ﻿#nullable disable
+using GymProject.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,6 +40,31 @@ namespace GymProject.BL.Models.AccessModels
 
         [Required]
         public double Weight { get; set; }
+
+
+        private UserDetailsModel ToUserDetailsModel()
+        {
+            UserDetailsModel model = new UserDetailsModel();
+            model.Weight = Weight;
+            model.FirstName = FirstName;
+            model.LastName = LastName;
+            model.Birth = Birth;
+            model.Height = Height;
+            model.Weight = Weight;
+            return model;
+        }
+
+        public UserModel ToUserModel()
+        {
+            UserModel user = new UserModel();
+            user.IsActived = false;
+            user.Email = Email;
+            user.UserName = Email;
+            user.Details = ToUserDetailsModel();
+            return user;
+        }
+
+
 
     }
 }

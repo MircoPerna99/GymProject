@@ -1,4 +1,5 @@
 ﻿using GymProject.BL.Models;
+using GymProject.BL.Models.AccessModels;
 using GymProject.DAL;
 using GymProject.DAL.Services;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +27,7 @@ namespace GymProject.BL.Services.AccessServices
             _userService = userService;
         }
 
-        public async Task<bool> SignIn(Sign user)
+        public async Task<bool> SignIn(SignInModel signInModel)
         {
             var userEntity = user.ToEntity();
             return await _userService.SaveUser(userEntity);
